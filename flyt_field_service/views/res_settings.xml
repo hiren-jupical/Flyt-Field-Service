@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_so_inhrt" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.so.inhrt</field>
+        <field name="model">res.config.settings</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='sale_ebay']" position="after">
+                <block id="montering_products_setting_container" title="Montering Products">
+                    <div class="col-12 col-lg-6 o_setting_box" id="field_task">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Montering Products</span>
+                            
+                            <div class="text-muted">
+                                Product used for Field Task
+                            </div>
+                            <div class="text-muted">
+                                <field name="montering_product_id"/>
+                            </div>
+                        </div>
+                    </div>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

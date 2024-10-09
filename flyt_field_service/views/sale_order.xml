@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_so_inherite" model="ir.ui.view">
+        <field name="name">view_order_form_so_inherite</field>
+        <field name="model">sale.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='payment_term_id']" position='after'>
+                <field name="monitor_task_id" invisible='1'/>
+                <label for="planned_date_begin" string="Planned Montering"/>
+                <div class="w-100">
+                    <div class="o_row">
+                        <field name="planned_date_begin" widget="daterange" options="{'related_end_date': 'planned_date_end'}"/>
+                        <i class="fa fa-long-arrow-right mx-2 oe_edit_only" aria-label="Arrow icon" title="Arrow"/>
+                        <i class="fa fa-long-arrow-right mx-2 oe_read_only" aria-label="Arrow icon" title="Arrow" invisible="planned_date_begin == False and planned_date_end == False"/>
+                        <field name="planned_date_end" widget="daterange" options="{'related_start_date': 'planned_date_begin'}"/>
+                        <button name="open_fields_task" type="object" string="Add service Task" invisible="state not in ('draft,sent,sale,done')"/>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+     <!-- Server Action -->
+
+     <record id="action_add_sale_service_task" model="ir.actions.server">
+         <field name="name">Plan service task</field>
+         <field name="model_id" ref="sale.model_sale_order"/>
+         <field name="binding_model_id" ref="sale.model_sale_order"/>
+         <field name="binding_view_types">list</field>
+         <field name="state">code</field>
+         <field name="code">
+            if records:
+                action = records.open_fields_task()
+         </field>
+   </record>
+
+</odoo>

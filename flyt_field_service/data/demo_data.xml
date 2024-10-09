@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="tag_reserve_project" model="project.tags">
+            <field name="name">Reserve</field>
+            <field name="color">4</field>
+        </record>
+        <record id="tag_confirm_project" model="project.tags">
+            <field name="name">Confirm</field>
+            <field name="color">4</field>
+        </record>
+    </data>
+</odoo>
